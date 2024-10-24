@@ -1,0 +1,50 @@
+name: Build Aider Executable
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        python-version: [3.10]
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pyinstaller
+
+      - name: Install Aider and its dependencies
+        run: pip install -e .
+
+      - name: Create run_aider.py
+        run: |
+          echo "from aider import main" > run_aider.py
+          echo "if __name__ == '__main__':" >> run_aider.py
+          echo "    main()" >> run_aider.py
+        shell: bash
+
+      - name: Build with PyInstaller
+        run: |
+          pyinstaller --onefile --name aider --console run_aider.py
+        shell: bash
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: aider-${{ matrix.os }}
+          path: dist/aider*

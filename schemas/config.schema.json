@@ -1,0 +1,216 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "properties": {
+        "openAiApiKey": {
+            "type": "string",
+            "description": "OpenAI API key"
+        },
+        "anthropicApiKey": {
+            "type": "string",
+            "description": "Anthropic API key"
+        },
+        "model": {
+            "type": "string",
+            "description": "Model to use for the main chat",
+            "default": "gpt-4"
+        },
+        "editFormat": {
+            "type": "string",
+            "description": "Edit format to use",
+            "enum": ["diff", "whole", "patch"],
+            "default": "diff"
+        },
+        "darkMode": {
+            "type": "boolean",
+            "description": "Use colors suitable for dark terminal background",
+            "default": false
+        },
+        "lightMode": {
+            "type": "boolean",
+            "description": "Use colors suitable for light terminal background",
+            "default": false
+        },
+        "pretty": {
+            "type": "boolean",
+            "description": "Enable/disable pretty, colorized output",
+            "default": true
+        },
+        "stream": {
+            "type": "boolean",
+            "description": "Enable/disable streaming responses",
+            "default": true
+        },
+        "userInputColor": {
+            "type": "string",
+            "description": "Color for user input",
+            "default": "#00cc00"
+        },
+        "toolOutputColor": {
+            "type": "string",
+            "description": "Color for tool output"
+        },
+        "toolErrorColor": {
+            "type": "string",
+            "description": "Color for tool error messages",
+            "default": "#FF2222"
+        },
+        "toolWarningColor": {
+            "type": "string",
+            "description": "Color for tool warning messages",
+            "default": "#FFA500"
+        },
+        "assistantOutputColor": {
+            "type": "string",
+            "description": "Color for assistant output",
+            "default": "#0088ff"
+        },
+        "completionMenuColor": {
+            "type": "string",
+            "description": "Color for the completion menu"
+        },
+        "completionMenuBgColor": {
+            "type": "string",
+            "description": "Background color for the completion menu"
+        },
+        "completionMenuCurrentColor": {
+            "type": "string",
+            "description": "Color for the current item in completion menu"
+        },
+        "completionMenuCurrentBgColor": {
+            "type": "string",
+            "description": "Background color for current item in completion menu"
+        },
+        "codeTheme": {
+            "type": "string",
+            "description": "Markdown code theme",
+            "enum": ["default", "monokai", "solarized-dark", "solarized-light"],
+            "default": "default"
+        },
+        "showDiffs": {
+            "type": "boolean",
+            "description": "Show diffs when committing changes",
+            "default": false
+        },
+        "git": {
+            "type": "boolean",
+            "description": "Enable/disable looking for git repo",
+            "default": true
+        },
+        "gitignore": {
+            "type": "boolean",
+            "description": "Enable/disable adding .aider* to .gitignore",
+            "default": true
+        },
+        "aiderignore": {
+            "type": "string",
+            "description": "Specify the aider ignore file",
+            "default": ".aiderignore"
+        },
+        "subtreeOnly": {
+            "type": "boolean",
+            "description": "Only consider files in current git subtree",
+            "default": false
+        },
+        "autoCommits": {
+            "type": "boolean",
+            "description": "Enable/disable auto commit of LLM changes",
+            "default": true
+        },
+        "dirtyCommits": {
+            "type": "boolean",
+            "description": "Enable/disable commits when repo is found dirty",
+            "default": true
+        },
+        "attributeAuthor": {
+            "type": "boolean",
+            "description": "Attribute aider code changes in git author name",
+            "default": true
+        },
+        "attributeCommitter": {
+            "type": "boolean",
+            "description": "Attribute aider commits in git committer name",
+            "default": true
+        },
+        "attributeCommitMessageAuthor": {
+            "type": "boolean",
+            "description": "Prefix commit messages with 'aider: ' if authored",
+            "default": false
+        },
+        "attributeCommitMessageCommitter": {
+            "type": "boolean",
+            "description": "Prefix all commit messages with 'aider: '",
+            "default": false
+        },
+        "commitPrompt": {
+            "type": "string",
+            "description": "Custom prompt for generating commit messages"
+        },
+        "dryRun": {
+            "type": "boolean",
+            "description": "Perform dry run without modifying files",
+            "default": false
+        },
+        "skipSanityCheckRepo": {
+            "type": "boolean",
+            "description": "Skip git repository sanity check",
+            "default": false
+        },
+        "lintCmd": {
+            "type": "object",
+            "description": "Lint commands for different languages",
+            "additionalProperties": {
+                "type": "string"
+            }
+        },
+        "autoLint": {
+            "type": "boolean",
+            "description": "Enable/disable automatic linting after changes",
+            "default": true
+        },
+        "testCmd": {
+            "type": "string",
+            "description": "Command to run tests"
+        },
+        "autoTest": {
+            "type": "boolean",
+            "description": "Enable/disable automatic testing after changes",
+            "default": false
+        },
+        "vim": {
+            "type": "boolean",
+            "description": "Use VI editing mode in terminal",
+            "default": false
+        },
+        "chatLanguage": {
+            "type": "string",
+            "description": "Language to use in chat"
+        },
+        "checkUpdate": {
+            "type": "boolean",
+            "description": "Check for new aider versions on launch",
+            "default": true
+        },
+        "encoding": {
+            "type": "string",
+            "description": "Encoding for input and output",
+            "default": "utf-8"
+        },
+        "suggestShellCommands": {
+            "type": "boolean",
+            "description": "Enable/disable suggesting shell commands",
+            "default": true
+        },
+        "voiceFormat": {
+            "type": "string",
+            "description": "Audio format for voice recording",
+            "enum": ["wav", "webm", "mp3"],
+            "default": "wav"
+        },
+        "voiceLanguage": {
+            "type": "string",
+            "description": "Language for voice using ISO 639-1 code",
+            "default": "en"
+        }
+    }
+}
